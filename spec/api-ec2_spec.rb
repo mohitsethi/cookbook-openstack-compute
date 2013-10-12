@@ -25,3 +25,4 @@ describe "openstack-compute::api-ec2" do
     expect_creates_api_paste "service[nova-api-ec2]"
   end
 end
+

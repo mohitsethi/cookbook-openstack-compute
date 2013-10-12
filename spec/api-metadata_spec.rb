@@ -23,5 +23,23 @@ describe "openstack-compute::api-metadata" do
     end
 
     expect_creates_api_paste "service[nova-api-metadata]"
+
+    describe "/etc/nova/nova.conf" do
+      before do
+        @template = @chef_run.template "/etc/nova/nova.conf"
+      end
+      it "has proper owner" do
+        expect(@template).to be_owned_by "nova", "nova"
+      end
+    end
+
+    describe "/etc/nova/api-paste.ini" do
+      before do
+        @template = @chef_run.template "/etc/nova/api-paste.ini"
+      end
+      it "has proper owner" do
+        expect(@template).to be_owned_by "nova", "nova"
+      end
+    end
   end
 end
